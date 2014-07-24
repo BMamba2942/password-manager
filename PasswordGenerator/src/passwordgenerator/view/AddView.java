@@ -18,6 +18,7 @@ import passwordgenerator.model.PasswordModel;
  * @author Joseph
  */
 public class AddView extends AbstractView {
+    public static final String GEN = "Generate";
     private JTextField passSize;
     private JTextField passName;
     
@@ -29,7 +30,7 @@ public class AddView extends AbstractView {
         JLabel passNameLabel = new JLabel("Password Name");
         JLabel passSizeLabel = new JLabel("Password Size");
         passSize = new JTextField("8");
-        JButton addPass = new JButton("Generate");
+        JButton addPass = new JButton(GEN);
         addPass.addActionListener(handle);
         passName.addActionListener(handle);
         passSize.addActionListener(handle);
@@ -54,7 +55,7 @@ public class AddView extends AbstractView {
         public void actionPerformed(ActionEvent e)
         {
             ((AddPController)getController()).operation(e.getActionCommand(),
-                    passName.getText(), Integer.parseInt(passSize.getText()));
+                    passName.getText(), Integer.parseInt(passSize.getText()), null);
         }
     }
     

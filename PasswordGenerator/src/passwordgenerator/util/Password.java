@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package passwordgenerator.util;
-import java.util.ArrayList;
 import java.util.Random;
 import java.io.File;
 
@@ -22,13 +21,22 @@ public class Password {
                        '2', '3', '4', '5', '6', '7', '8', '9'};
     
     private File file = new File("testfile");
+    private String passN;
+    private String pass;
     
     SimpleFileWriter writer = new SimpleFileWriter(file.getAbsoluteFile());
     
     public Password(){}
     
-    public String generate(int size, String name)
+    public String generate(int size, String name) throws EmptyStringException,
+            SpaceException
     {
+        name = name.trim();
+        if(name.equals(""))
+            throw new EmptyStringException();
+        for(char c : name.toCharArray())
+           if(c == ' ')
+               throw new SpaceException(); // No spaces, plox
         
         char[] temp = new char[size];
         Random rand = new Random();
@@ -44,8 +52,7 @@ public class Password {
         return password;
     }
     
-   private String passN;
-   private String pass;
+   
    
    public Password(String name, String pass)
    {
@@ -56,6 +63,25 @@ public class Password {
    public String getPassword()
    {
        return this.pass;
+   }
+   
+   public void createPassword(String pass, String name) throws EmptyStringException,
+           SpaceException
+   {
+       name = name.trim();
+       pass = pass.trim();
+       if(name.equals(""))
+           throw new EmptyStringException();
+       for(char c : name.toCharArray())
+           if(c == ' ')
+               throw new SpaceException(); // No spaces, plox
+       for(char c : pass.toCharArray())
+       {
+           if(c == ' ')
+               throw new SpaceException();
+       }
+       
+       writer.savePassword(name, pass);
    }
    
    

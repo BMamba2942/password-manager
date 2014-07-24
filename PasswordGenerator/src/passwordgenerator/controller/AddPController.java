@@ -9,6 +9,9 @@ import passwordgenerator.view.AbstractView;
 import passwordgenerator.view.AddView;
 import passwordgenerator.util.Password;
 import java.util.ArrayList;
+import passwordgenerator.util.EmptyStringException;
+import passwordgenerator.view.AddOwnView;
+import passwordgenerator.util.SpaceException;
 
 /**
  *
@@ -19,9 +22,7 @@ public class AddPController extends AbstractController {
     
     public AddPController()
     {
-        setModel(new PasswordModel());
-        setView(new AddView((PasswordModel)getModel(), this));
-        ((AbstractView)getView()).setVisible(true);
+        openView();
     }
     
      public AddPController(ArrayList<String> passwords)
@@ -32,13 +33,55 @@ public class AddPController extends AbstractController {
         ((AbstractView)getView()).setVisible(true);
     }
     
-    public void operation(String option, String name, int length)
+    public void operation(String option, String name, int length, String userPass)
     {
-        if(option.equals("Generate"))
+        switch(option)
         {
-            Password pass = new Password();
-            System.out.println(pass.generate(length, name));
-            ((AbstractView)getView()).setVisible(false);
+            case AddView.GEN:
+                Password pass = new Password();
+                try
+                {
+                   pass.generate(length, name);
+                }
+                catch(EmptyStringException e)
+                {
+                    // ERROR MESSAGE BOX
+                    System.err.println("Please enter a password name");
+                }
+                catch(SpaceException f)
+                {
+                    // ERROR MESSAGE BOX
+                    System.err.println("Please do not put any spaces");
+                }
+                ((AbstractView)getView()).setVisible(false);
+                break;
+            case AddOwnView.ADD:
+                Password ownPass = new Password();
+                try
+                {
+                   ownPass.createPassword(userPass, name);
+                }
+                catch(EmptyStringException e)
+                {
+                    // ERROR MESSAGE BOX
+                    System.err.println("Please enter a password name");
+                }
+                catch(SpaceException f)
+                {
+                    // ERROR MESSAGE BOX
+                    System.err.println("Please do not put any spaces");
+                }
+                ((AbstractView)getView()).setVisible(false);
+                break;
         }
+        
+       
     }
+    
+     private void openView()
+     {
+        setModel(new PasswordModel());
+        setView(new AddOwnView((PasswordModel)getModel(), this));
+        ((AbstractView)getView()).setVisible(true);
+     }
 }
