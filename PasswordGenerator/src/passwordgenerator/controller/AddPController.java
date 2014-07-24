@@ -37,7 +37,6 @@ public class AddPController extends AbstractController {
         if(option.equals("Generate"))
         {
             Password pass = new Password();
-            System.out.println(pass.generate(length, name));
             ((AbstractView)getView()).setVisible(false);
         }
     }

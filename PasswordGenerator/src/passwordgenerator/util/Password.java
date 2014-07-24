@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package passwordgenerator.util;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Random;
 import java.io.File;
 
