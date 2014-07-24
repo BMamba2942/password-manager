@@ -16,9 +16,11 @@ import passwordgenerator.util.SimpleFileProcessor;
  * @author Joseph
  */
 public class MainView extends AbstractView {
-    public static final String ADD = "Add new Password";
+    public static final String ADD = "Generate new Password";
     public static final String COPY = "Copy to clipboard";
+    public static final String ADD_OWN = "Add my own Password";
     private JComboBox passwords;
+    
     public MainView(PasswordModel model, PasswordController controller)
     {
         super(model, controller);
@@ -31,9 +33,12 @@ public class MainView extends AbstractView {
         addPass.addActionListener(handle);
         JButton copPass = new JButton(COPY);
         copPass.addActionListener(handle);
+        JButton addOwnPass = new JButton(ADD_OWN);
+        addOwnPass.addActionListener(handle);
         JPanel thePanel = new JPanel();
         thePanel.setLayout(new FlowLayout());
         thePanel.add(passwords);
+        thePanel.add(addOwnPass);
         thePanel.add(addPass);
         thePanel.add(copPass);
         this.getContentPane().add(thePanel);
@@ -49,7 +54,8 @@ public class MainView extends AbstractView {
     {
         public void actionPerformed(ActionEvent e)
         {
-            ((PasswordController)getController()).operation(e.getActionCommand(), passwords.getSelectedIndex());
+            ((PasswordController)getController()).operation(e.getActionCommand()
+                    , passwords.getSelectedIndex());
         }
     }
     

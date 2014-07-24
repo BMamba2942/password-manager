@@ -41,7 +41,6 @@ public class SimpleFileReader {
 		}
 		catch(FileNotFoundException e) //catch FileNotFoundException
 		{
-			System.out.println("The file could not be found.");
                         throw new FileNotFoundException();
 		}
 		catch(InputMismatchException e)//catch non-String cases
