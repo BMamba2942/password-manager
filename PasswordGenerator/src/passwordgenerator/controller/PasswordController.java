@@ -32,11 +32,13 @@ public class PasswordController extends AbstractController{
     public void operation(String option, int index)
     {
         /* When a button is pressed, it will pass its name as an option*/
-        
         switch(option)
         {
             case MainView.ADD:
                 new AddPController(passwords);
+                break;
+            case MainView.ADD_OWN:
+                new AddPController();
                 break;
             case MainView.COPY:
                 try
@@ -48,7 +50,7 @@ public class PasswordController extends AbstractController{
                 }
                 catch(ArrayIndexOutOfBoundsException e)
                 {
-                    System.out.println("Password selected was invalid");
+                    //No password there, so just do nothing
                 }
                 break;
         }
