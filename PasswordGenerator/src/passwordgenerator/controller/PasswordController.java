@@ -32,17 +32,25 @@ public class PasswordController extends AbstractController{
     public void operation(String option, int index)
     {
         /* When a button is pressed, it will pass its name as an option*/
-        if(option.equals(MainView.ADD))
+        
+        switch(option)
         {
-            new AddPController(passwords);
-        }
-        else if(option.equals(MainView.COPY))
-        {
-            String temp = ((PasswordModel)getModel()).getPassword(index);
-            StringSelection stringSelection = new StringSelection(temp);
-            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
-            clpbrd.setContents(stringSelection, null);
-            //System.out.println(((PasswordModel)getModel()).getPassword(index));
+            case MainView.ADD:
+                new AddPController(passwords);
+                break;
+            case MainView.COPY:
+                try
+                {
+                    String temp = ((PasswordModel)getModel()).getPassword(index);
+                    StringSelection stringSelection = new StringSelection(temp);
+                    Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+                    clpbrd.setContents(stringSelection, null);
+                }
+                catch(ArrayIndexOutOfBoundsException e)
+                {
+                    System.out.println("Password selected was invalid");
+                }
+                break;
         }
     }
 }
