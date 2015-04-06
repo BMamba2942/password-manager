@@ -10,7 +10,7 @@ import passwordgenerator.util.Password;
 import passwordgenerator.util.SimpleFileWriter;
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public class PasswordModel extends AbstractModel{
     private ArrayList<String> passStrings;

@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public class AddOwnView extends AbstractView {
     private JTextField passName;
