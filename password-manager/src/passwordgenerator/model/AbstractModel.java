@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public abstract class AbstractModel implements Model {
     private ArrayList listeners = new ArrayList(5);

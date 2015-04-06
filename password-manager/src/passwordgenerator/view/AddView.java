@@ -15,7 +15,7 @@ import passwordgenerator.model.PasswordModel;
 
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public class AddView extends AbstractView {
     public static final String GEN = "Generate";

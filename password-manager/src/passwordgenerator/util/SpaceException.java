@@ -6,7 +6,7 @@ package passwordgenerator.util;
 
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public class SpaceException extends Exception {
     

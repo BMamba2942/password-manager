@@ -16,7 +16,7 @@ import passwordgenerator.view.MainView;
 
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public class PasswordController extends AbstractController{
     

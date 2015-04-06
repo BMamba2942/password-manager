@@ -21,7 +21,7 @@ import passwordgenerator.util.SimpleFileProcessor;
 
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public class MainView extends AbstractView {
     public static final String ADD = "Generate new Password";
@@ -79,6 +79,7 @@ public class MainView extends AbstractView {
     
     class Handler implements ActionListener 
     {
+    	@Override
         public void actionPerformed(ActionEvent e)
         {
             ((PasswordController)getController()).operation(e.getActionCommand()
@@ -100,7 +101,6 @@ public class MainView extends AbstractView {
         processor = new SimpleFileProcessor();
         pController = new PasswordController(processor.process());
         file = processor.getFile();
-        //((PasswordModel)pController.getModel()).savePasswords(processor.getFile());
     }
     
     

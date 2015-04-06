@@ -7,7 +7,7 @@ import passwordgenerator.model.Model;
 import passwordgenerator.view.View;
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public class AbstractController implements Controller{
     private View view;
