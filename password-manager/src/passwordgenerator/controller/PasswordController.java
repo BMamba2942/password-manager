@@ -40,13 +40,14 @@ public class PasswordController extends AbstractController{
     public void operation(String option, int index, File file)
     {
         /* When a button is pressed, it will pass its name as the option variable*/
+    	System.out.println(option);
         switch(option)
         {
             case MainView.ADD:
-                new AddPController(pModel);
+                new AddPController(pModel, MainView.ADD);
                 break;
             case MainView.ADD_OWN:
-                new AddPController(pModel);
+                new AddPController(pModel, MainView.ADD_OWN);
                 break;
             case MainView.COPY:
                 try
