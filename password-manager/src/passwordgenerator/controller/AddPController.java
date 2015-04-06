@@ -13,6 +13,7 @@ import passwordgenerator.util.SpaceException;
 import passwordgenerator.view.AbstractView;
 import passwordgenerator.view.AddOwnView;
 import passwordgenerator.view.AddView;
+import passwordgenerator.view.MainView;
 
 /**
  *
@@ -22,11 +23,14 @@ public class AddPController extends PasswordController {
 	private PasswordModel passwords;
 	private Boolean caughtError;
 
-	public AddPController(PasswordModel passwords)
+	public AddPController(PasswordModel passwords, String mode)
 	{
 		this.passwords = passwords;
 		setModel(this.passwords);
-		setView(new AddView(this.passwords, this));
+		if(mode.equals(MainView.ADD))
+		   setView(new AddView(this.passwords, this));
+		else if(mode.equals(MainView.ADD_OWN))
+			setView(new AddOwnView(this.passwords, this));
 		((AbstractView)getView()).setVisible(true);
 	}
 
