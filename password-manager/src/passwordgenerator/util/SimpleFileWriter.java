@@ -12,11 +12,9 @@ public class SimpleFileWriter {
 	private ArrayList<Password> passwords;
 	/**
 	 * A constructor for <code>SimpleFileWriter</code> that takes in a 
-	 * <code>File</code> and two sets of <code>LinkedList<String></code>
+	 * <code>File</code>
 	 * 
 	 * @param file				The file to output to
-	 * @param readDataNames		The data determined to be names
-	 * @param readDataEmail		The data determined to be emails
 	 */
 	public SimpleFileWriter(File file, ArrayList<Password> passwords)
 	{
