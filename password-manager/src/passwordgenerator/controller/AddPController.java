@@ -17,7 +17,7 @@ import passwordgenerator.view.MainView;
 
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public class AddPController extends PasswordController {
 	private PasswordModel passwords;

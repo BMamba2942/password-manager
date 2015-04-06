@@ -10,7 +10,7 @@ import passwordgenerator.model.Model;
 import passwordgenerator.controller.Controller;
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 abstract public class AbstractView extends JFrame implements View, ModelListener {
     private Model model;

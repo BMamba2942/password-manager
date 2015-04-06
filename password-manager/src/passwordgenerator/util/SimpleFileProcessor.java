@@ -1,10 +1,9 @@
 package passwordgenerator.util;
-import java.io.File; //for File class
-import java.util.InputMismatchException; //for InputMismatchException
-import java.util.Scanner; //for Scanner class
-import java.util.ArrayList; //for LinkedList class
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.util.ArrayList;
+
 
 
 public class SimpleFileProcessor {
@@ -12,15 +11,9 @@ public class SimpleFileProcessor {
 	File file;
 	public ArrayList<String> process()
 	{
-		Scanner processName, //Scanners that process names
-		processEmail; //and emails, respectively
-
-		ArrayList<String> list = null, //Linked lists hold the raw data
-				names, //data that is determined as a name
-				email; //data that is determined as an email
+		ArrayList<String> list = null;
 		SimpleFileReader read; //Class that reads the file
-		
-		String outName; 
+		 
 
 		Boolean fileExisted;
 
@@ -30,8 +23,6 @@ public class SimpleFileProcessor {
 			file = new File("testfile");
 			read = new SimpleFileReader(file);
 			list = read.processFile();
-			names = new ArrayList<>();
-			email = new ArrayList<>();
 			fileExisted = true;
 		}
 		catch(FileNotFoundException e)

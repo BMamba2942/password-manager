@@ -6,7 +6,7 @@ package passwordgenerator.model;
 
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public interface ModelListener {
     public void modelChanged(ModelEvent event);
