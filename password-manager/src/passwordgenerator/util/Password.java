@@ -8,7 +8,7 @@ import java.io.File;
 
 /**
  *
- * @author Joseph
+ * @author BMamba2942
  */
 public class Password {
     private static final char[] albet = 

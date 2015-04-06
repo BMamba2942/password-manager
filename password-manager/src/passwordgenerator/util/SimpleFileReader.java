@@ -31,7 +31,6 @@ public class SimpleFileReader {
 		try
 		{
 			input = new Scanner(in);
-			//input.useDelimiter("[|]"); //ignore '|' characters
 			list = new ArrayList<>(); //token holder
 			while(input.hasNext())
 			{
