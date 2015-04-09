@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 
 public class SimpleFileWriter {
 	private FileWriter writing;
@@ -30,15 +32,17 @@ public class SimpleFileWriter {
 		}
 	}
 
-	public SimpleFileWriter(File file)
+	public SimpleFileWriter(File file) throws IOException
 	{
 		try
 		{
 			out = file.getAbsoluteFile();
 			writing = new FileWriter(out, false); // Always overwrite the file, since the data for it is stored in memory
 		}
-		catch(Exception e)
-		{}
+		catch(IOException e)
+		{
+			throw e;
+		}
 	}
 
 	public void savePassword(String name, String password)

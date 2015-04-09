@@ -4,6 +4,8 @@
  */
 package passwordgenerator.controller;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 import passwordgenerator.model.PasswordModel;
@@ -22,6 +24,7 @@ import passwordgenerator.view.MainView;
 public class AddPController extends PasswordController {
 	private PasswordModel passwords;
 	private Boolean caughtError;
+	private Password pass, ownPass;
 
 	public AddPController(PasswordModel passwords, String mode)
 	{
@@ -39,7 +42,14 @@ public class AddPController extends PasswordController {
 		switch(option)
 		{
 		case AddView.GEN:
-			Password pass = new Password();
+			try
+			{
+			   pass = new Password();
+			}
+			catch(IOException e)
+			{
+				JOptionPane.showMessageDialog((AbstractView)getView(), "Unable to open a file to save passwords."); //TODO: HAVE USER CHECK WHETHER THEY MAY WRITE TO THAT DIRECTORY
+			}
 			caughtError = false;
 			try
 			{
@@ -61,7 +71,14 @@ public class AddPController extends PasswordController {
 				((AbstractView)getView()).setVisible(false); //otherwise, close view
 			break;
 		case AddOwnView.ADD:
-			Password ownPass = new Password();
+			try
+			{
+			    ownPass = new Password();
+			}
+			catch(IOException e)
+			{
+				JOptionPane.showMessageDialog((AbstractView)getView(), "Unable to open a file to save passwords."); //TODO: HAVE USER CHECK WHETHER THEY MAY WRITE TO THAT DIRECTORY
+			}
 			caughtError = false;
 			try
 			{
