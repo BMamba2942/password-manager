@@ -68,7 +68,6 @@ public class MainView extends AbstractView {
     
     public void modelChanged(ModelEvent e)
     {
-    	System.out.println(e.getActionCommand());
     	if(e.getActionCommand().equals("add"))
     	   passwords.addItem(((PasswordModel) getModel()).getLastPassword());
     	else if(e.getActionCommand().equals("remove"))
