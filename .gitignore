@@ -1,2 +1,12 @@
-/PasswordGenerator/dist/
-/PasswordGenerator/build/
+/testfile
+
+/.classpath
+
+/.project
+/build/
+/dist/
+
+/nbproject/
+
+/.settings/
+password-manager/bin/
