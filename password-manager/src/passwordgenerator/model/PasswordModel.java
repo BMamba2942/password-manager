@@ -49,10 +49,17 @@ public class PasswordModel extends AbstractModel{
     	return this.passwords;
     }
     
-    public void removePassword(int index)
+    public void removePassword(int index) throws ArrayIndexOutOfBoundsException
     {
-    	passwords.remove(index);
-    	notifyChanged(new ModelEvent(this, index, "remove", (float)0.0));
+    	try
+    	{
+    	   passwords.remove(index);
+    	   notifyChanged(new ModelEvent(this, index, "remove", (float)0.0));
+    	}
+    	catch(ArrayIndexOutOfBoundsException e)
+    	{
+    		throw e;
+    	}   	
     }
     
     public void add(Password password)

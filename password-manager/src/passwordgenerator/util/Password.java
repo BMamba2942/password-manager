@@ -3,15 +3,18 @@
  * and open the template in the editor.
  */
 package passwordgenerator.util;
-import java.util.Random;
 import java.io.File;
+import java.io.IOException;
+import java.util.Random;
 
 /**
  *
  * @author BMamba2942
  */
 public class Password {
-    private static final char[] albet = 
+    private static final String FILE_NAME = "testfile";
+
+    private static final char[] ALPHABET = 
                       {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
                        'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
                        'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a',
@@ -20,13 +23,23 @@ public class Password {
                        't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', 
                        '2', '3', '4', '5', '6', '7', '8', '9'};
     
-    private File file = new File("testfile");
-    private String passN;
+    private File file = new File(FILE_NAME);
+    private String passName;
     private String pass;
     
-    SimpleFileWriter writer = new SimpleFileWriter(file.getAbsoluteFile());
+    private SimpleFileWriter writer;
     
-    public Password(){}
+    public Password() throws IOException //TODO: Figure out a better way to handle this exception...
+    {
+    	try
+    	{
+    		writer = new SimpleFileWriter(file.getAbsoluteFile());
+    	}
+    	catch(IOException e)
+    	{
+    		throw e;
+    	}
+    }
     
     /*Generates a new random password: 
      *   int size: User requested password length
@@ -46,11 +59,9 @@ public class Password {
         Random rand = new Random();
         for(int i = 0; i < size; i++)
         {
-            temp[i] = albet[rand.nextInt(albet.length)];
+            temp[i] = ALPHABET[rand.nextInt(ALPHABET.length)];
         }
         String password = new String(temp);
-        
-        //writer.savePassword(name, password);
         
         return new Password(name, password);
     }
@@ -59,7 +70,7 @@ public class Password {
    
    public Password(String name, String pass)
    {
-       this.passN = new String(name);
+       this.passName = new String(name);
        this.pass = new String(pass);
    }
    
@@ -70,7 +81,7 @@ public class Password {
    
    public String getPasswordName()
    {
-	   return this.passN;
+	   return this.passName;
    }
    /* Generates a new password based on a user pre-defined password(for storing of already created
     * passwords by the user)

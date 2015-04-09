@@ -26,7 +26,7 @@ public class SimpleFileReader {
 	 * from the file being read in
 	 * @return 		ArrayList<String> containing data tokens
 	 */
-	public ArrayList<String> processFile() throws FileNotFoundException
+	public ArrayList<String> readFile() throws FileNotFoundException
 	{
 		try
 		{
@@ -40,7 +40,7 @@ public class SimpleFileReader {
 		}
 		catch(FileNotFoundException e) //catch FileNotFoundException
 		{
-			throw new FileNotFoundException();
+			throw e;
 		}
 		catch(InputMismatchException e)//catch non-String cases
 		{

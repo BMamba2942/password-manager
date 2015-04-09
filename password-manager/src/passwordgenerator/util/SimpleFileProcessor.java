@@ -12,7 +12,7 @@ public class SimpleFileProcessor {
 	public ArrayList<String> process()
 	{
 		ArrayList<String> list = null;
-		SimpleFileReader read; //Class that reads the file
+		SimpleFileReader reader; //Class that reads the file
 		 
 
 		Boolean fileExisted;
@@ -21,8 +21,8 @@ public class SimpleFileProcessor {
 		try
 		{
 			file = new File("testfile");
-			read = new SimpleFileReader(file);
-			list = read.processFile();
+			reader = new SimpleFileReader(file);
+			list = reader.readFile();
 			fileExisted = true;
 		}
 		catch(FileNotFoundException e)

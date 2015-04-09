@@ -10,6 +10,8 @@ import java.awt.datatransfer.StringSelection;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import passwordgenerator.model.PasswordModel;
 import passwordgenerator.view.AbstractView;
 import passwordgenerator.view.MainView;
@@ -62,8 +64,15 @@ public class PasswordController extends AbstractController{
                     //No password there, so just do nothing
                 }
                 break;
-            case MainView.REMOVE:
-            	pModel.removePassword(index);
+            case MainView.REMOVE: //TODO: confirm the password to be removed first
+            	try
+            	{
+            	   pModel.removePassword(index);
+            	}
+            	catch(ArrayIndexOutOfBoundsException e)
+            	{
+            		JOptionPane.showMessageDialog((AbstractView)getView(), "No passwords to remove, list is empty.");
+            	}
             	break;
             case MainView.EXIT:
             	pModel.savePasswords(file);
