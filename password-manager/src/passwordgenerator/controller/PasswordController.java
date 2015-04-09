@@ -42,7 +42,6 @@ public class PasswordController extends AbstractController{
     public void operation(String option, int index, File file)
     {
         /* When a button is pressed, it will pass its name as the option variable*/
-    	System.out.println(option);
         switch(option)
         {
             case MainView.ADD:
@@ -67,7 +66,9 @@ public class PasswordController extends AbstractController{
             case MainView.REMOVE: //TODO: confirm the password to be removed first
             	try
             	{
-            	   pModel.removePassword(index);
+                   if(JOptionPane.showConfirmDialog(null, 
+                    "Are you sure you wish to remove " + pModel.getPassword(index).getPasswordName() +"?", "Remove Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+                	   pModel.removePassword(index);
             	}
             	catch(ArrayIndexOutOfBoundsException e)
             	{

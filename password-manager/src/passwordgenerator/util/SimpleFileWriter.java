@@ -24,7 +24,7 @@ public class SimpleFileWriter {
 		{
 			out = file.getAbsoluteFile();
 			this.passwords = passwords;
-			writing = new FileWriter(out, true);
+			writing = new FileWriter(out, false);
 		}
 		catch(IOException e)
 		{
