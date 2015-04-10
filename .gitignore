@@ -1,12 +1,3 @@
 /testfile
-
-/.classpath
-
-/.project
-/build/
-/dist/
-
-/nbproject/
-
-/.settings/
-password-manager/bin/
+/password-manager/src/CompileRun.rb
+/password-manager/build/
