@@ -5,6 +5,7 @@
 package passwordgenerator.model;
 import java.io.File;
 import java.util.ArrayList;
+import java.lang.IllegalArgumentException;
 
 import passwordgenerator.util.Password;
 import passwordgenerator.util.SimpleFileWriter;
@@ -62,8 +63,13 @@ public class PasswordModel extends AbstractModel{
     	}   	
     }
     
-    public void add(Password password)
+    public void add(Password password, Boolean force) throws IllegalArgumentException
     {
+        for(Password p : passwords)
+        {
+            if(!force && p.getPasswordName().equals(password.getPasswordName()))
+                throw new IllegalArgumentException();
+        }
     	passwords.add(password);
     	notifyChanged(new ModelEvent(this, 1, "add", (float)0.0));
     }
