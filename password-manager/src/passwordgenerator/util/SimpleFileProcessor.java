@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class SimpleFileProcessor {
 	FileWriter fileWrite;
 	File file;
+
 	public ArrayList<String> process()
 	{
 		ArrayList<String> list = null;
