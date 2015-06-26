@@ -9,7 +9,7 @@ I have finally added Maven Support!</h3>
 Then to run Password Manager <br />
 <p><code>mvn exec:java</code></p>
 <br />
-Or you can use the jar-with-dependencies file generated in target by double clicking the file or using the command <br />
-<code>java -jar \<jar-with-dependencies\>.jar</code><br />
+Or you can use the jar-with-dependencies file generated in target by double clicking the file or using the command <br /><br />
+<code>java -jar \<jar-with-dependencies\>.jar</code><br /><br />
 Though that assumes you have java in your path variable
 <hr>
