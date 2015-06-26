@@ -7,5 +7,5 @@ I have finally added Maven Support!</h1>
 
 <code>mvn install</code>
 
-Then to run Password Manager
+Then to run Password Manager <br />
 <code>mvn exec:java</code>
