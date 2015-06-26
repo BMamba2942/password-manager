@@ -12,7 +12,7 @@ public class SimpleFileReader {
 	private Scanner input; //for taking in input from the file
 	private ArrayList<String> list; //for holding the input
 	private BasicTextEncryptor decryptor;
-	private String temp;
+	private String temp, decryptedPass;
 	/**
 	 * A constructor for <code>SimpleFileReader</code> that takes in a
 	 * <code>File</code> as an argument and stores it in a member variable.
@@ -43,7 +43,8 @@ public class SimpleFileReader {
 			while(input.hasNext())
 			{
 				temp = input.next();
-				list.add(decryptor.decrypt(temp)); //add Strings to list
+				decryptedPass = decryptor.decrypt(temp); 
+				list.add(decryptedPass); //add Strings to list
 			}
 			input.close(); //close the file
 		}
@@ -55,9 +56,14 @@ public class SimpleFileReader {
 		{
 			System.out.println("Encountered input that was not of type String");
 		}
-		catch(EncryptionOperationNotPossibleException enpe)
+		catch(EncryptionOperationNotPossibleException eonpe)
 		{
-			System.out.println("An error occurred");
+			list.add(temp);
+			while(input.hasNext())
+			{
+				temp = input.next();
+				list.add(temp);
+			}
 		}
 		return list; 
 	}
