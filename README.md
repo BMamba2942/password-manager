@@ -9,9 +9,9 @@ My password manager offers a very simplistic UI and allows users to store passwo
 I had fun developing this (though I always think of something to add) and I feel it could serve as a decent starting point for others!
 </p>
 <br /><br />
-<hr><br />
+<hr>
 <h4>Compile and run using Maven</h4>
-<hr><br />
+<hr>
 <code>mvn install</code><br /><br />
 Then to run Password Manager <br />
 <p><code>mvn exec:java</code></p>
