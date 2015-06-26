@@ -1,9 +1,9 @@
 password-manager
 ================
 
-<h1>Simple password manager<br />
-I have finally added Maven Support!</h1>
-<h2>Build using Maven</h2>
+<h3>Simple password manager<br />
+I have finally added Maven Support!</h3>
+<h4>Build using Maven</h4>
 
 <code>mvn install</code>
 
