@@ -37,7 +37,7 @@ public class MainView extends AbstractView {
     public MainView(PasswordModel model, PasswordController controller)
     {
         super(model, controller);
-        super.setTitle("Password Generator");
+        super.setTitle("Password Manager");
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         Handler handle = new Handler();
         WHandler wHandle = new WHandler();
