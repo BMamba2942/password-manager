@@ -6,12 +6,15 @@ package passwordgenerator.util;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
+import java.util.Comparator;
+import java.lang.NullPointerException;
+import java.lang.ClassCastException;
 
 /**
  *
  * @author BMamba2942
  */
-public class Password {
+public class Password{
     private static final String FILE_NAME = "testfile";
 
     private static final char[] ALPHABET = 
@@ -28,6 +31,15 @@ public class Password {
     private String pass;
     
     private SimpleFileWriter writer;
+
+    static class PasswordComparer implements Comparator<Password>
+    {
+      @Override
+      public int compare(Password password1, Password password2) throws NullPointerException, ClassCastException
+      {
+        return password1.getPasswordName().compareToIgnoreCase(password2.getPasswordName()); 
+      }
+    }
     
     public Password() throws IOException //TODO: Figure out a better way to handle this exception...
     {
@@ -106,6 +118,7 @@ public class Password {
        return new Password(name, pass);
    }
    
+    
    
    
 }

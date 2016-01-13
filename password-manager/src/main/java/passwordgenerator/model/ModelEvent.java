@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
  * @author BMamba2942
  */
 public class ModelEvent extends ActionEvent {
-    public ModelEvent(Object obj, int id, String message, float amount)
+    public ModelEvent(Object obj, int id, String message)
     {
         super(obj, id, message);
     }

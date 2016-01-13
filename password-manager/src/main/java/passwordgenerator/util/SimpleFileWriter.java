@@ -37,6 +37,23 @@ public class SimpleFileWriter {
 		}
 	}
 
+	private void swap(int index1, int index2)
+	{
+		Password temp = passwords.get(index1);
+		passwords.set(index1, passwords.get(index2));
+		passwords.set(index2, temp);
+	}
+
+	private void sortPasswordsByName()
+	{
+		// Empty lists/one element lists are already sorted
+		if(passwords.size() <= 1) return;
+
+		ArrayList<Password> sortedPasswords;
+		passwords.sort(new Password.PasswordComparer());
+
+	}
+
 	public SimpleFileWriter(File file) throws IOException
 	{
 		try
@@ -59,6 +76,7 @@ public class SimpleFileWriter {
 
 	public void savePasswords()
 	{
+		sortPasswordsByName();
 		for(int i = 0; i < passwords.size(); i++)
 			savePassword(encryptor.encrypt(passwords.get(i).getPasswordName()), 
 				encryptor.encrypt(passwords.get(i).getPasswordString()));

@@ -34,7 +34,6 @@ public class SimpleFileReader {
 	 */
 	public ArrayList<String> readFile() throws FileNotFoundException, InputMismatchException
 	{
-		//int count = 0;
 		try
 		{
 			input = new Scanner(in);

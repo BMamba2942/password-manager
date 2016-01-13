@@ -55,7 +55,7 @@ public class PasswordModel extends AbstractModel{
     	try
     	{
     	   passwords.remove(index);
-    	   notifyChanged(new ModelEvent(this, index, "remove", (float)0.0));
+    	   notifyChanged(new ModelEvent(this, index, "remove"));
     	}
     	catch(ArrayIndexOutOfBoundsException e)
     	{
@@ -71,7 +71,7 @@ public class PasswordModel extends AbstractModel{
                 throw new IllegalArgumentException();
         }
     	passwords.add(password);
-    	notifyChanged(new ModelEvent(this, 1, "add", (float)0.0));
+    	notifyChanged(new ModelEvent(this, 1, "add"));
     }
     
     public void savePasswords(File file)

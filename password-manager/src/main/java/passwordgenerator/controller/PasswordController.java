@@ -63,7 +63,7 @@ public class PasswordController extends AbstractController{
                     //No password there, so just do nothing
                 }
                 break;
-            case MainView.REMOVE: //TODO: confirm the password to be removed first
+            case MainView.REMOVE: 
             	try
             	{
                    if(JOptionPane.showConfirmDialog(null, 
