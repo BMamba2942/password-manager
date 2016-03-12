@@ -31,11 +31,19 @@ public class PasswordModel extends AbstractModel{
        }
     }
     
+    public void sortPasswordsByName()
+    {
+        // Empty lists/one element lists are already sorted
+        if(passwords.size() <= 1) return;
+        passwords.sort(new Password.PasswordComparer());
+
+    }
+
     public Object[] getNames()
     {
         ArrayList<String> temp = new ArrayList<>();
-        for(int i = 0; i < passStrings.size(); i+=2)
-            temp.add(passStrings.get(i));
+        for(Password p : passwords)
+            temp.add(p.getPasswordName());
  
         return temp.toArray();
     }
@@ -71,6 +79,7 @@ public class PasswordModel extends AbstractModel{
                 throw new IllegalArgumentException();
         }
     	passwords.add(password);
+        sortPasswordsByName();
     	notifyChanged(new ModelEvent(this, 1, "add"));
     }
     

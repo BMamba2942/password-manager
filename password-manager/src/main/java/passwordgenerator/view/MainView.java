@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,9 +26,10 @@ import passwordgenerator.util.SimpleFileProcessor;
  */
 public class MainView extends AbstractView {
     public static final String ADD = "Generate new Password";
-    public static final String COPY = "Copy to clipboard";
+    public static final String COPY = "Copy selected Password to clipboard";
     public static final String ADD_OWN = "Add my own Password";
-    public static final String REMOVE = "Remove Password";
+    public static final String REMOVE = "Remove selected Password";
+    public static final String RENAME = "Rename selected Password";
     public static final String EXIT = "Exit";
     private JComboBox passwords;
     private static File file;
@@ -52,6 +54,8 @@ public class MainView extends AbstractView {
         addOwnPass.addActionListener(handle);
         JButton removePass = new JButton(REMOVE);
         removePass.addActionListener(handle);
+        JButton renamePass = new JButton(RENAME);
+        renamePass.addActionListener(handle);
         JButton exitButton = new JButton(EXIT);
         exitButton.addActionListener(handle);
         JPanel thePanel = new JPanel();
@@ -61,6 +65,7 @@ public class MainView extends AbstractView {
         thePanel.add(addPass);
         thePanel.add(copPass);
         thePanel.add(removePass);
+        thePanel.add(renamePass);
         thePanel.add(exitButton);
         this.getContentPane().add(thePanel);
         pack();
@@ -68,10 +73,20 @@ public class MainView extends AbstractView {
     
     public void modelChanged(ModelEvent e)
     {
-    	if(e.getActionCommand().equals("add"))
-    	   passwords.addItem(((PasswordModel) getModel()).getLastPassword());
-    	else if(e.getActionCommand().equals("remove"))
-    		passwords.removeItemAt(e.getID());
+        switch(e.getActionCommand())
+        {
+            case "add":
+                passwords.removeAllItems();
+                for(Object p : (((PasswordModel)getModel()).getNames()))
+                {
+                  passwords.addItem(p);
+                }
+            break;
+
+            case "remove":
+                passwords.removeItemAt(e.getID()); 
+        }
+        
         this.repaint();
         pack();
     }
