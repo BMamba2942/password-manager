@@ -32,7 +32,7 @@ public class Password{
     
     private SimpleFileWriter writer;
 
-    static class PasswordComparer implements Comparator<Password>
+    static public class PasswordComparer implements Comparator<Password>
     {
       @Override
       public int compare(Password password1, Password password2) throws NullPointerException, ClassCastException
@@ -41,7 +41,7 @@ public class Password{
       }
     }
     
-    public Password() throws IOException //TODO: Figure out a better way to handle this exception...
+    public Password() throws IOException
     {
     	try
     	{
@@ -61,11 +61,10 @@ public class Password{
             SpaceException
     {
         name = name.trim();
-        if(name.equals(""))
+        if(name.isEmpty())
             throw new EmptyStringException();
-        for(char c : name.toCharArray())
-           if(c == ' ')
-               throw new SpaceException(); // No spaces, plox
+        if(name.contains(" "))
+          throw new SpaceException(); // No spaces, plox
         
         char[] temp = new char[size];
         Random rand = new Random();
@@ -93,8 +92,14 @@ public class Password{
    
    public String getPasswordName()
    {
-	   return this.passName;
+       return this.passName;
    }
+
+   public void setPasswordName(String name)
+   {
+       this.passName = name;
+   }
+
    /* Generates a new password based on a user pre-defined password(for storing of already created
     * passwords by the user)
     * String name: User defined name for what the password will be stored as
@@ -105,16 +110,13 @@ public class Password{
    {
        name = name.trim();
        pass = pass.trim();
-       if(name.equals(""))
+       if(name.isEmpty())
            throw new EmptyStringException();
-       for(char c : name.toCharArray())
-           if(c == ' ')
-               throw new SpaceException(); // No spaces, plox
-       for(char c : pass.toCharArray())
-       {
-           if(c == ' ')
-               throw new SpaceException();
-       }
+       if(name.contains(" ")) 
+           throw new SpaceException(); // No spaces, plox
+       if(pass.contains(" "))
+           throw new SpaceException();
+
        return new Password(name, pass);
    }
    

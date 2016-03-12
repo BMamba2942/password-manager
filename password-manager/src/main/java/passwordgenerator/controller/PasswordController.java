@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import passwordgenerator.model.PasswordModel;
 import passwordgenerator.view.AbstractView;
 import passwordgenerator.view.MainView;
+import passwordgenerator.model.ModelEvent;
 
 /**
  *
@@ -60,14 +61,16 @@ public class PasswordController extends AbstractController{
                 }
                 catch(ArrayIndexOutOfBoundsException e)
                 {
-                    //No password there, so just do nothing
+                    JOptionPane.showMessageDialog((AbstractView)getView(), "No password to copy to clipboard");
                 }
                 break;
             case MainView.REMOVE: 
             	try
             	{
                    if(JOptionPane.showConfirmDialog(null, 
-                    "Are you sure you wish to remove " + pModel.getPassword(index).getPasswordName() +"?", "Remove Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+                    "Are you sure you wish to remove " 
+                    + pModel.getPassword(index).getPasswordName() 
+                    +"?", "Remove Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
                 	   pModel.removePassword(index);
             	}
             	catch(ArrayIndexOutOfBoundsException e)
@@ -75,6 +78,23 @@ public class PasswordController extends AbstractController{
             		JOptionPane.showMessageDialog((AbstractView)getView(), "No passwords to remove, list is empty.");
             	}
             	break;
+            case MainView.RENAME:
+                String newName = JOptionPane.showInputDialog("Please enter the new name of the password");
+                if(newName.isEmpty())
+                {
+                    JOptionPane.showMessageDialog((AbstractView)getView(),"Password name cannot be blank");
+                }
+                else if(newName.contains(" "))
+                {
+                    JOptionPane.showMessageDialog((AbstractView)getView(),"Please do not include any spaces in the name of the password\n\nNew password name not set");    
+                }
+                else
+                {
+                    ((PasswordModel)getModel()).getPassword(index).setPasswordName(newName);
+                    ((PasswordModel)getModel()).sortPasswordsByName();
+                    ((PasswordModel)getModel()).notifyChanged(new ModelEvent(this, 1, "add"));
+                }
+                break;
             case MainView.EXIT:
             	pModel.savePasswords(file);
             	System.exit(0);
