@@ -1,5 +1,5 @@
 /password-manager/testfile
-/password-manager/src/CompileRun.rb
 /password-manager/build/
 /password-manager/target/
 /password-manager/src/test/
+/password-manager/src/main/java/passwordgenerator/*/*.class
