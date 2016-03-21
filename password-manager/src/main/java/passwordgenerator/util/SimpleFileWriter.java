@@ -5,14 +5,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import org.jasypt.util.text.BasicTextEncryptor;
+import org.jasypt.util.text.StrongTextEncryptor;
 
 
 public class SimpleFileWriter {
 	private FileWriter writing;
 	private File out;
 	private ArrayList<Password> passwords;
-	private BasicTextEncryptor encryptor;
+	private StrongTextEncryptor encryptor;
 
 	/**
 	 * A constructor for <code>SimpleFileWriter</code> that takes in a 
@@ -28,7 +28,7 @@ public class SimpleFileWriter {
 			this.passwords = passwords;
 			writing = new FileWriter(out, false);
 			String password = "a";
-			encryptor = new BasicTextEncryptor();
+			encryptor = new StrongTextEncryptor();
 			encryptor.setPassword(password);
 		}
 		catch(IOException e)

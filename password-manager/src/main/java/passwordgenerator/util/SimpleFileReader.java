@@ -4,14 +4,14 @@ import java.io.FileNotFoundException; //for FileNotFoundException
 import java.util.Scanner; //for Scanner class
 import java.util.ArrayList;//for LinkedList class
 import java.util.InputMismatchException; //for InputMismatchException
-import org.jasypt.util.text.BasicTextEncryptor;
+import org.jasypt.util.text.StrongTextEncryptor;
 import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
 
 public class SimpleFileReader {
 	private File in; //file variable
 	private Scanner input; //for taking in input from the file
 	private ArrayList<String> list; //for holding the input
-	private BasicTextEncryptor decryptor;
+	private StrongTextEncryptor decryptor;
 	private String temp, decryptedPass;
 	/**
 	 * A constructor for <code>SimpleFileReader</code> that takes in a
@@ -23,7 +23,7 @@ public class SimpleFileReader {
 	{
 		in = file.getAbsoluteFile();
 		String password = "a";
-		decryptor = new BasicTextEncryptor();
+		decryptor = new StrongTextEncryptor();
 		decryptor.setPassword(password);
 	}
 
