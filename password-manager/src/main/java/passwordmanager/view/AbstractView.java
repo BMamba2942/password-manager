@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package passwordgenerator.view;
+package passwordmanager.view;
 import javax.swing.*;
-import passwordgenerator.model.ModelListener;
-import passwordgenerator.model.AbstractModel;
-import passwordgenerator.model.Model;
-import passwordgenerator.controller.Controller;
+import passwordmanager.model.ModelListener;
+import passwordmanager.model.AbstractModel;
+import passwordmanager.model.Model;
+import passwordmanager.controller.Controller;
 /**
  *
  * @author BMamba2942

@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package passwordgenerator.model;
+package passwordmanager.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.lang.IllegalArgumentException;
 
-import passwordgenerator.util.Password;
-import passwordgenerator.util.SimpleFileWriter;
+import passwordmanager.util.Password;
+import passwordmanager.util.SimpleFileWriter;
 /**
  *
  * @author BMamba2942

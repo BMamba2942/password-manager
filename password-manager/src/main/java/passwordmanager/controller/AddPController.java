@@ -2,20 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package passwordgenerator.controller;
+package passwordmanager.controller;
 
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import passwordgenerator.model.PasswordModel;
-import passwordgenerator.util.EmptyStringException;
-import passwordgenerator.util.Password;
-import passwordgenerator.util.SpaceException;
-import passwordgenerator.view.AbstractView;
-import passwordgenerator.view.AddOwnView;
-import passwordgenerator.view.AddView;
-import passwordgenerator.view.MainView;
+import passwordmanager.model.PasswordModel;
+import passwordmanager.util.EmptyStringException;
+import passwordmanager.util.Password;
+import passwordmanager.util.SpaceException;
+import passwordmanager.view.AbstractView;
+import passwordmanager.view.AddOwnView;
+import passwordmanager.view.AddView;
+import passwordmanager.view.MainView;
 
 /**
  *

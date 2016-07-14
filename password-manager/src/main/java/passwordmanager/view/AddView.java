@@ -2,16 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package passwordgenerator.view;
+package passwordmanager.view;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import passwordgenerator.model.ModelEvent;
-import passwordgenerator.model.Model;
-import passwordgenerator.controller.Controller;
-import passwordgenerator.controller.AddPController;
-import passwordgenerator.model.PasswordModel;
+import passwordmanager.model.ModelEvent;
+import passwordmanager.model.Model;
+import passwordmanager.controller.Controller;
+import passwordmanager.controller.AddPController;
+import passwordmanager.model.PasswordModel;
 
 /**
  *

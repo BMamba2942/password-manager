@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package passwordgenerator.controller;
+package passwordmanager.controller;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -12,11 +12,11 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import passwordgenerator.model.PasswordModel;
-import passwordgenerator.view.AbstractView;
-import passwordgenerator.view.MainView;
-import passwordgenerator.model.ModelEvent;
-import passwordgenerator.util.Password;
+import passwordmanager.model.PasswordModel;
+import passwordmanager.view.AbstractView;
+import passwordmanager.view.MainView;
+import passwordmanager.model.ModelEvent;
+import passwordmanager.util.Password;
 
 /**
  *

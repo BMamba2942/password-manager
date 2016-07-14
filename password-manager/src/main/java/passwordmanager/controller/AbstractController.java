@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package passwordgenerator.controller;
-import passwordgenerator.model.Model;
-import passwordgenerator.view.View;
+package passwordmanager.controller;
+import passwordmanager.model.Model;
+import passwordmanager.view.View;
 /**
  *
  * @author BMamba2942

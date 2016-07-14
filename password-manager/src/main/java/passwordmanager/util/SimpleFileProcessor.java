@@ -1,4 +1,4 @@
-package passwordgenerator.util;
+package passwordmanager.util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

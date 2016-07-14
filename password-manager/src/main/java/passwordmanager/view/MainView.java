@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package passwordgenerator.view;
+package passwordmanager.view;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,10 +15,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import passwordgenerator.controller.PasswordController;
-import passwordgenerator.model.ModelEvent;
-import passwordgenerator.model.PasswordModel;
-import passwordgenerator.util.SimpleFileProcessor;
+import passwordmanager.controller.PasswordController;
+import passwordmanager.model.ModelEvent;
+import passwordmanager.model.PasswordModel;
+import passwordmanager.util.SimpleFileProcessor;
 
 /**
  *
