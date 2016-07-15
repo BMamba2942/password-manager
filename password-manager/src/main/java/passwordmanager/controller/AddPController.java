@@ -4,10 +4,7 @@
  */
 package passwordmanager.controller;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 import org.jasypt.util.text.StrongTextEncryptor;
@@ -84,8 +81,6 @@ public class AddPController extends PasswordController {
                         encrypted.setPasswordName(encryptor.encrypt(name));
                         encrypted.setPasswordString(encryptor.encrypt(encrypted.getPasswordString()));
                         db.addPassword(encrypted);
-                        System.out.println("Name: " + encrypted.getPasswordName());
-                        System.out.println("Password: " + encrypted.getPasswordString());
                         this.passwords.add(pass);
                     }
                     catch (SQLException e) {
@@ -96,7 +91,10 @@ public class AddPController extends PasswordController {
                 case AddOwnView.ADD: {
                     try {
                         pass.createPassword(userPass, name);
-                        db.addPassword(pass);
+                        Password encrypted = new Password(pass);
+                        encrypted.setPasswordName(encryptor.encrypt(name));
+                        encrypted.setPasswordString(encryptor.encrypt(encrypted.getPasswordString()));
+                        db.addPassword(encrypted);
                         this.passwords.add(pass);
                     }
                     catch (SQLException e) {

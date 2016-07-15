@@ -101,8 +101,9 @@ public class Password {
             throw new SpaceException(); // No spaces, plox
         if (pass.contains(" "))
             throw new SpaceException();
-
-        return new Password(name, pass);
+        this.pass = pass;
+        this.passName = name;
+        return this;
     }
 
     @Override
