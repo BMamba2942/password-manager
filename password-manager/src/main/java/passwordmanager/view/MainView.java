@@ -111,7 +111,6 @@ public class MainView extends AbstractView {
             db = new DBManager();
         }
         catch (SQLException | ClassNotFoundException e) {
-            //TODO: catch error and show to user with view
             e.printStackTrace();
             System.exit(-1);
         }

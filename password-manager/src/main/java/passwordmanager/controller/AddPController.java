@@ -31,14 +31,13 @@ public class AddPController extends PasswordController {
     private DBManager db;
     private StrongTextEncryptor encryptor;
 
-    public AddPController(PasswordModel passwords, String mode, DBManager db) {
+    public AddPController(PasswordModel passwords, String mode, DBManager db, String key) {
         this.passwords = passwords;
         this.db = db;
         pass = new Password();
         setModel(this.passwords);
-        String password = "a"; //TODO: place holder
         encryptor = new StrongTextEncryptor();
-        encryptor.setPassword(password);
+        encryptor.setPassword(key);
         switch (mode) {
             case MainView.ADD:
                 setView(new AddView(this.passwords, this));

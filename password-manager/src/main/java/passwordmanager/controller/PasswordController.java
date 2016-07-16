@@ -16,7 +16,6 @@ import org.jasypt.util.text.StrongTextEncryptor;
 import passwordmanager.model.PasswordModel;
 import passwordmanager.view.AbstractView;
 import passwordmanager.view.MainView;
-import passwordmanager.model.ModelEvent;
 import passwordmanager.util.DBManager;
 import passwordmanager.util.Password;
 
@@ -31,13 +30,16 @@ public class PasswordController extends AbstractController {
     private DBManager db;
     private StrongTextEncryptor decryptor;
     private StrongTextEncryptor encryptor;
+    private String password;
 
     public PasswordController() {
 
     }
 
     public PasswordController(DBManager db) {
-        String password = "a"; //TODO: place holder
+        password = JOptionPane.showInputDialog("Enter password", null);
+        if (password == null || password.isEmpty())
+            System.exit(0);
         encryptor = new StrongTextEncryptor();
         encryptor.setPassword(password);
         decryptor = new StrongTextEncryptor();
@@ -54,9 +56,7 @@ public class PasswordController extends AbstractController {
             }
         }
         catch (SQLException e) {
-            //TODO: Make this error pop up in GUI
-            System.err.println("Error accessing database");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog((AbstractView) this.getView(), "Error accessing database", "Database error", JOptionPane.ERROR_MESSAGE);
             System.exit(-1);
         }
         pModel = new PasswordModel(passwords);
@@ -69,10 +69,10 @@ public class PasswordController extends AbstractController {
         /* When a button is pressed, it will pass its name as the option variable*/
         switch (option) {
             case MainView.ADD:
-                new AddPController(pModel, MainView.ADD, db);
+                new AddPController(pModel, MainView.ADD, db, password);
                 break;
             case MainView.ADD_OWN:
-                new AddPController(pModel, MainView.ADD_OWN, db);
+                new AddPController(pModel, MainView.ADD_OWN, db, password);
                 break;
             case MainView.COPY:
                 try {
