@@ -56,21 +56,6 @@ public class DBManager {
         insert = this.sqlConnection.prepareStatement(query);
     }
 
-    public ArrayList<String> getPasswordNames() throws SQLException {
-        ResultSet results;
-        PreparedStatement getNames;
-        String query = "SELECT name from passwords";
-        ArrayList<String> listResults;
-
-        getNames = this.sqlConnection.prepareStatement(query);
-        results = getNames.executeQuery();
-        listResults = new ArrayList<>();
-        while (results.next())
-            listResults.add(results.getString("NAME"));
-
-        return listResults;
-    }
-
     public String getPassword(String name) throws SQLException {
         ResultSet results;
         PreparedStatement getPassword;
@@ -112,7 +97,7 @@ public class DBManager {
 
     public void removePassword(String name) throws SQLException {
         PreparedStatement removePassword;
-        String query = "DELETE FROM passwords where name=?";
+        String query = "DELETE FROM passwords where name= ?";
         removePassword = this.sqlConnection.prepareStatement(query);
         removePassword.setString(1, name);
         removePassword.executeUpdate();
@@ -123,7 +108,7 @@ public class DBManager {
         String query = "UPDATE passwords set name = ? where name = ?";
         renamePassword = this.sqlConnection.prepareStatement(query);
         renamePassword.setString(1, newName);
-        renamePassword.setString(2, newName);
+        renamePassword.setString(2, oldName);
         renamePassword.executeUpdate();
     }
 

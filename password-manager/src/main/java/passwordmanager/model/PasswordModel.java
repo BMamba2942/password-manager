@@ -4,7 +4,6 @@
  */
 package passwordmanager.model;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import passwordmanager.util.Password;
@@ -43,6 +42,9 @@ public class PasswordModel extends AbstractModel {
 
     public void setPassword(Password newP, int index) {
         passwords.set(index, newP);
+        sortPasswordsByName();
+        // An add ModelEvent can handle renaming as well
+        notifyChanged(new ModelEvent(this, index, "add"));
     }
 
     public ArrayList<Password> getPasswords() {
@@ -52,7 +54,6 @@ public class PasswordModel extends AbstractModel {
     public void removePassword(int index) throws ArrayIndexOutOfBoundsException {
         passwords.remove(index);
         notifyChanged(new ModelEvent(this, index, "remove"));
-
     }
 
     public void add(Password password) throws IllegalArgumentException {

@@ -6,6 +6,7 @@ package passwordmanager.util;
 
 import java.util.Random;
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  *
@@ -109,6 +110,25 @@ public class Password {
     @Override
     public String toString() {
         return "Name: " + this.getPasswordName() + ", Password: " + this.getPasswordString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        Password p = (Password) obj;
+        if (!(p instanceof Password))
+            throw new ClassCastException();
+
+        return p.pass.equals(this.pass) && p.passName.equals(this.passName); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.passName);
+        hash = 53 * hash + Objects.hashCode(this.pass);
+        return hash;
     }
 
 }
