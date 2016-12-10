@@ -48,16 +48,6 @@ public class DBTest {
     }
 
     @Test
-    public void testPasswordCompare() {
-        Password pass1 = new Password();
-        pass1.setPasswordName("pass1");
-        Password pass2 = new Password();
-        pass2.setPasswordName("pass2");
-        int result = new Password.PasswordComparer().compare(pass1, pass2);
-        assertTrue(result < 0);
-    }
-
-    @Test
     public void testCreatePassword() throws Throwable {
         Password pass = new Password("test", "password");
 

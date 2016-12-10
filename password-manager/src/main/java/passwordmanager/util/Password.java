@@ -59,7 +59,15 @@ public class Password {
 
     }
 
-    public Password(String name, String pass) {
+    public Password(String name, String pass) throws IllegalArgumentException{
+        if (name.isEmpty())
+            throw new IllegalArgumentException("Password name cannot be empty");
+        if(pass.isEmpty())
+            throw new IllegalArgumentException("Password cannot be empty");
+        if(name.contains(" "))
+            throw new IllegalArgumentException("Password name cannot contain whitespace");
+        if(pass.contains(" "))
+            throw new IllegalArgumentException("Password cannot contain whitespace");
         this.passName = name;
         this.pass = pass;
     }
@@ -69,7 +77,11 @@ public class Password {
         this.pass = p.pass;
     }
 
-    public void setPasswordString(String pass) {
+    public void setPasswordString(String pass) throws IllegalArgumentException {
+        if(pass.contains(" "))
+            throw new IllegalArgumentException("Password cannot contain whitespace");
+        if(pass.isEmpty())
+            throw new IllegalArgumentException("Password cannot be empty");
         this.pass = pass;
     }
 
@@ -81,7 +93,11 @@ public class Password {
         return this.passName;
     }
 
-    public void setPasswordName(String name) {
+    public void setPasswordName(String name) throws IllegalArgumentException {
+        if (name.isEmpty())
+            throw new IllegalArgumentException("Password name cannot be empty");
+        if(name.contains(" "))
+            throw new IllegalArgumentException("Password name cannot contain whitespace");
         this.passName = name;
     }
 
