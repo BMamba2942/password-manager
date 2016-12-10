@@ -102,6 +102,7 @@ public class PasswordController extends AbstractController {
                 System.exit(-1);
             }
             catch (EncryptionOperationNotPossibleException ex) {
+                ex.printStackTrace();
                 //If the user got here, that means they entered the wrong password
                 JOptionPane.showMessageDialog(null, "Incorrect password entered");
                 int result = JOptionPane.showOptionDialog(null, passwordPrompt, "Password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
@@ -119,8 +120,6 @@ public class PasswordController extends AbstractController {
             }
         }
         pModel = new PasswordModel(passwords);
-        for (Password p : passwords)
-            System.out.println(p.toString());
         setModel(pModel);
 
         setView(

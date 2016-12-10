@@ -109,7 +109,7 @@ public class MainView extends AbstractView {
 
     public static void main(String args[]) {
         try {
-            db = new DBManager();
+            db = new DBManager("test");
         }
         catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

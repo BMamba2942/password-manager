@@ -30,7 +30,7 @@ public class Password {
 
         @Override
         public int compare(Password password1, Password password2) throws NullPointerException, ClassCastException {
-            return password1.getPasswordName().compareToIgnoreCase(password2.getPasswordName());
+            return password1.getPasswordName().compareTo(password2.getPasswordName());
         }
     }
 
@@ -100,8 +100,6 @@ public class Password {
             throw new EmptyStringException();
         if (name.contains(" "))
             throw new SpaceException(); // No spaces, plox
-        if (pass.contains(" "))
-            throw new SpaceException();
         this.pass = pass;
         this.passName = name;
         return this;
