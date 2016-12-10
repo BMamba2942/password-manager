@@ -131,14 +131,18 @@ public class DBTest {
     public void testSortedNames() throws Throwable {
         Random rand = new Random();
         for (int i = 0; i < 200; ++i) {
-            Password p = new Password("test" + rand.nextInt(), "password");
+            Password p = new Password();
+            p.generate(10, "test" + i);
+            String temp = p.getPasswordName();
+            p.setPasswordName(p.getPasswordString());
+            p.setPasswordString(temp);
             testDb.addPassword(p);
         }
 
         ArrayList<Password> passwords = testDb.getPasswords();
+        passwords.sort(new Password.PasswordComparer());
         for (int i = 0; i < passwords.size() - 1; ++i) {
             System.out.println(passwords.get(i).toString());
-            System.out.println(passwords.get(i + 1).toString());
             int result = new Password.PasswordComparer().compare(passwords.get(i), passwords.get(i + 1));
             assertTrue(result < 0);
         }

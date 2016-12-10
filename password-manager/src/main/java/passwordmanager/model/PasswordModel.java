@@ -20,7 +20,7 @@ public class PasswordModel extends AbstractModel {
         this.passwords = pass;
     }
 
-    public void sortPasswordsByName() {
+    private void sortPasswordsByName() {
         // Empty lists/one element lists are already sorted
         if (passwords.size() <= 1)
             return;
@@ -40,7 +40,7 @@ public class PasswordModel extends AbstractModel {
         return passwords.get(index);
     }
 
-    public void setPassword(Password newP, int index) {
+    public void renamePassword(Password newP, int index) {
         passwords.set(index, newP);
         sortPasswordsByName();
         // An add ModelEvent can handle renaming as well
@@ -59,7 +59,7 @@ public class PasswordModel extends AbstractModel {
     public void add(Password password) throws IllegalArgumentException {
         for (Password p : passwords)
             if (p.getPasswordName().equals(password.getPasswordName()))
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Password with name " + password.getPasswordName() + " already exists");
         passwords.add(password);
         sortPasswordsByName();
         notifyChanged(new ModelEvent(this, 1, "add"));

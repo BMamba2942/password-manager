@@ -78,7 +78,7 @@ public class DBManager {
         ResultSet results;
         PreparedStatement getPasswords;
         ArrayList<Password> passwords = new ArrayList<>();
-        String query = "SELECT * FROM passwords ORDER BY name";
+        String query = "SELECT * FROM passwords";
         getPasswords = this.sqlConnection.prepareStatement(query);
         results = getPasswords.executeQuery();
 

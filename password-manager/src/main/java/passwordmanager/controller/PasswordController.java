@@ -187,14 +187,15 @@ public class PasswordController extends AbstractController {
                     String encrypted = encryptor.encrypt(newName);
                     db.renamePassword(passMap.get(password.getPasswordName()), encrypted);
                     password.setPasswordName(newName);
-                    ((PasswordModel) getModel()).setPassword(password, index);
+                    ((PasswordModel) getModel()).renamePassword(password, index);
                 }
                 catch (SQLException e) {
                     JOptionPane.showMessageDialog((AbstractView) getView(), "An error occurred while renaming " + password.getPasswordName(), "Database error", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace();
                 }
                 catch (Exception e) {
-
+                    JOptionPane.showMessageDialog((AbstractView) getView(), "An unexpected error occurred while renaming " + password.getPasswordName(), "Database error", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
                 }
 
                 break;

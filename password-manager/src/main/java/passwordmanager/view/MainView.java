@@ -4,21 +4,19 @@
  */
 package passwordmanager.view;
 
-import java.awt.FlowLayout;
+import passwordmanager.controller.PasswordController;
+import passwordmanager.model.ModelEvent;
+import passwordmanager.model.PasswordModel;
+import passwordmanager.util.DBManager;
+import passwordmanager.util.Password;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-
-import passwordmanager.controller.PasswordController;
-import passwordmanager.model.ModelEvent;
-import passwordmanager.model.PasswordModel;
-import passwordmanager.util.DBManager;
 
 /**
  *
@@ -43,6 +41,10 @@ public class MainView extends AbstractView {
         Handler handle = new Handler();
         WHandler wHandle = new WHandler();
         this.addWindowListener(wHandle);
+        Object[] names = model.getNames();
+        for(int i = 0; i < names.length; ++i){
+            System.out.println(names[i].toString());
+        }
         passwords = new JComboBox(model.getNames());
         passwords.addActionListener(handle);
         JButton addPass = new JButton(ADD);

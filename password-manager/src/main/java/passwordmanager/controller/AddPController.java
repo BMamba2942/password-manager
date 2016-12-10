@@ -11,9 +11,7 @@ import org.jasypt.util.text.StrongTextEncryptor;
 
 import passwordmanager.model.PasswordModel;
 import passwordmanager.util.DBManager;
-import passwordmanager.util.EmptyStringException;
 import passwordmanager.util.Password;
-import passwordmanager.util.SpaceException;
 import passwordmanager.view.AbstractView;
 import passwordmanager.view.AddOwnView;
 import passwordmanager.view.AddView;
@@ -103,18 +101,11 @@ public class AddPController extends PasswordController {
                 break;
             }
         }
-        catch (EmptyStringException e) {
-            JOptionPane.showMessageDialog((AbstractView) getView(), "Please enter a password name");
-            error = true;
-        }
-        catch (SpaceException f) {
-            JOptionPane.showMessageDialog((AbstractView) getView(), "Please do not put any spaces");
-            error = true;
-        }
         catch (IllegalArgumentException g) {
-            JOptionPane.showMessageDialog((AbstractView) getView(), "Cannot enter password with duplicate name");
-            String newName;
+                JOptionPane.showMessageDialog((AbstractView) getView(), g.getMessage());
+                error = true;
         }
+
 
         return error;
 

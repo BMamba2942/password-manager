@@ -38,14 +38,12 @@ public class Password {
      *   int size: User requested password length
      *   String name: User requested password name
      */
-    public Password generate(int size, String name) throws EmptyStringException,
-            SpaceException {
-
+    public Password generate(int size, String name) throws IllegalArgumentException {
         name = name.trim();
         if (name.isEmpty())
-            throw new EmptyStringException();
-        if (name.contains(" "))
-            throw new SpaceException(); // No spaces, plox
+            throw new IllegalArgumentException("Password name cannot be empty");
+        if(name.contains(" "))
+            throw new IllegalArgumentException("Password name cannot contain whitespace");
 
         char[] temp = new char[size];
         Random rand = new Random();
@@ -92,14 +90,17 @@ public class Password {
     * String name: User defined name for what the password will be stored as
     * String pass: User defined password to be stored
      */
-    public Password createPassword(String pass, String name) throws EmptyStringException,
-            SpaceException {
+    public Password createPassword(String pass, String name) throws IllegalArgumentException {
         name = name.trim();
         pass = pass.trim();
         if (name.isEmpty())
-            throw new EmptyStringException();
-        if (name.contains(" "))
-            throw new SpaceException(); // No spaces, plox
+            throw new IllegalArgumentException("Password name cannot be empty");
+        if(pass.isEmpty())
+            throw new IllegalArgumentException("Password cannot be empty");
+        if(name.contains(" "))
+            throw new IllegalArgumentException("Password name cannot contain whitespace");
+        if(pass.contains(" "))
+            throw new IllegalArgumentException("Password cannot contain whitespace");
         this.pass = pass;
         this.passName = name;
         return this;
