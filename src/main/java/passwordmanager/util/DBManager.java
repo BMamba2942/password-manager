@@ -19,7 +19,17 @@ public class DBManager {
     public DBManager() throws SQLException, ClassNotFoundException {
         try {
             Class.forName("org.sqlite.JDBC");
-            sqlConnection = DriverManager.getConnection("jdbc:sqlite:test.db");
+            sqlConnection = DriverManager.getConnection("jdbc:sqlite::memory:");
+            this.createTable();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw e;
+        }
+    }
+
+    public DBManager(String filename) throws SQLException, ClassNotFoundException {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            sqlConnection = DriverManager.getConnection("jdbc:sqlite:" + filename);
             this.createTable();
         }
         catch (SQLException | ClassNotFoundException e) {
@@ -46,8 +56,8 @@ public class DBManager {
         String query = "INSERT INTO passwords (NAME, PASSWORD) VALUES (?, ?)";
         try {
             insert = this.sqlConnection.prepareStatement(query);
-            insert.setString(1, password.getPasswordName());
-            insert.setString(2, password.getPasswordString());
+            insert.setString(1, password.getName());
+            insert.setString(2, password.getValue());
             insert.executeUpdate();
         }
         catch (SQLException e) {
@@ -70,7 +80,7 @@ public class DBManager {
         ResultSet results;
         PreparedStatement getPasswords;
         ArrayList<Password> passwords = new ArrayList<>();
-        String query = "SELECT * FROM passwords";
+        String query = "SELECT * FROM passwords as p ORDER by p.name";
         getPasswords = this.sqlConnection.prepareStatement(query);
         results = getPasswords.executeQuery();
 
@@ -82,17 +92,6 @@ public class DBManager {
         }
 
         return passwords;
-    }
-
-    public void storePasswords(ArrayList<Password> passwords) throws SQLException {
-        PreparedStatement storePasswords;
-        String query = "INSERT INTO passwords (NAME,PASSWORD) VALUES(?, ?)";
-        storePasswords = this.sqlConnection.prepareStatement(query);
-        for (Password p : passwords) {
-            storePasswords.setString(1, p.getPasswordName());
-            storePasswords.setString(2, p.getPasswordString());
-            storePasswords.executeUpdate();
-        }
     }
 
     public void removePassword(String name) throws SQLException {

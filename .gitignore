@@ -1,5 +1,5 @@
 testfile
 build/
 target/
-src/test/
-src/main/java/passwordgenerator/*/*.class
+src/main/java/passwordmanager/*/*.class
+.idea

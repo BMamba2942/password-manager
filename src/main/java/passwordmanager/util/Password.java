@@ -1,134 +1,41 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package passwordmanager.util;
 
-import java.util.Random;
-import java.util.Comparator;
-import java.util.Objects;
-
-/**
- *
- * @author BMamba2942
- */
 public class Password {
+    private String name;
+    private String value;
 
-    private static final char[] ALPHABET
-            = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-                'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-                'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a',
-                'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-                'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-                't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1',
-                '2', '3', '4', '5', '6', '7', '8', '9'};
-
-    private String passName;
-    private String pass;
-
-    static public class PasswordComparer implements Comparator<Password> {
-
-        @Override
-        public int compare(Password password1, Password password2) throws NullPointerException, ClassCastException {
-            return password1.getPasswordName().compareToIgnoreCase(password2.getPasswordName());
-        }
+    public Password(String name, String value) {
+        this.name = name;
+        this.value = value;
     }
 
-    /*Generates a new random password:
-     *   int size: User requested password length
-     *   String name: User requested password name
-     */
-    public Password generate(int size, String name) throws EmptyStringException,
-            SpaceException {
-
-        name = name.trim();
-        if (name.isEmpty())
-            throw new EmptyStringException();
-        if (name.contains(" "))
-            throw new SpaceException(); // No spaces, plox
-
-        char[] temp = new char[size];
-        Random rand = new Random();
-        for (int i = 0; i < size; i++)
-            temp[i] = ALPHABET[rand.nextInt(ALPHABET.length)];
-        String password = new String(temp);
-        this.passName = name;
-        this.pass = password;
-        return this;
+    public String getName() {
+        return name;
     }
 
-    public Password() {
-
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Password(String name, String pass) {
-        this.passName = name;
-        this.pass = pass;
+    public String getValue() {
+        return value;
     }
 
-    public Password(Password p) {
-        this.passName = p.passName;
-        this.pass = p.pass;
-    }
-
-    public void setPasswordString(String pass) {
-        this.pass = pass;
-    }
-
-    public String getPasswordString() {
-        return this.pass;
-    }
-
-    public String getPasswordName() {
-        return this.passName;
-    }
-
-    public void setPasswordName(String name) {
-        this.passName = name;
-    }
-
-    /* Generates a new password based on a user pre-defined password(for storing of already created
-    * passwords by the user)
-    * String name: User defined name for what the password will be stored as
-    * String pass: User defined password to be stored
-     */
-    public Password createPassword(String pass, String name) throws EmptyStringException,
-            SpaceException {
-        name = name.trim();
-        pass = pass.trim();
-        if (name.isEmpty())
-            throw new EmptyStringException();
-        if (name.contains(" "))
-            throw new SpaceException(); // No spaces, plox
-        if (pass.contains(" "))
-            throw new SpaceException();
-        this.pass = pass;
-        this.passName = name;
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "Name: " + this.getPasswordName() + ", Password: " + this.getPasswordString();
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null)
-            return false;
-        Password p = (Password) obj;
-        if (!(p instanceof Password))
-            throw new ClassCastException();
+        if (this == obj) return true;
+        if (obj instanceof Password) return true;
+        Password other = (Password)obj;
 
-        return p.pass.equals(this.pass) && p.passName.equals(this.passName); //To change body of generated methods, choose Tools | Templates.
+        return this.name.equals(other.name);
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.passName);
-        hash = 53 * hash + Objects.hashCode(this.pass);
-        return hash;
+        return this.name.hashCode();
     }
-
 }
