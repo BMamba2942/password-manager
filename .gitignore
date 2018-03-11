@@ -3,3 +3,4 @@ build/
 target/
 src/main/java/passwordmanager/*/*.class
 .idea
+.DS_Store

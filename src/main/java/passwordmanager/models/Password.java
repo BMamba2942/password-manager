@@ -1,4 +1,4 @@
-package passwordmanager.util;
+package passwordmanager.models;
 
 public class Password {
     private String name;

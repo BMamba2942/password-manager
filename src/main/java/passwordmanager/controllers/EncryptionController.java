@@ -2,7 +2,7 @@ package passwordmanager.controllers;
 
 import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
 import org.jasypt.util.text.StrongTextEncryptor;
-import passwordmanager.util.Password;
+import passwordmanager.models.Password;
 
 public class EncryptionController {
 

@@ -1,5 +1,7 @@
 package passwordmanager.util;
 
+import passwordmanager.models.Password;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

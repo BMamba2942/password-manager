@@ -5,11 +5,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import passwordmanager.controllers.EncryptionController;
 import passwordmanager.util.DBManager;
-import passwordmanager.util.Password;
+import passwordmanager.models.Password;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -88,5 +85,20 @@ public class AppTest
         assertFalse(encryptedPassword.getValue().equals("test"));
         Password decryptedPassword = ec.decryptPassword(encryptedPassword, "test");
         assertTrue(decryptedPassword.getValue().equals("test"));
+    }
+
+    public void testDuplicatePassword() {
+        try {
+            DBManager db = new DBManager();
+            ArrayList<Password> pwords = db.getPasswords();
+            assertEquals(0, pwords.size());
+            db.addPassword(new Password("test", "test"));
+            pwords = db.getPasswords();
+            assertEquals(1, pwords.size());
+            db.addPassword(new Password("test", "test"));
+            fail("Allowed duplicate password");
+        } catch (SQLException | ClassNotFoundException e) {
+            // swallow exception. this is a pass state
+        }
     }
 }

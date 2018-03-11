@@ -1,31 +1,44 @@
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import passwordmanager.controllers.SceneController;
+import passwordmanager.models.Password;
+import passwordmanager.scenes.ViewScene;
+import passwordmanager.scenes.PromptScene;
+import passwordmanager.util.DBManager;
 
-public class Main extends Application {
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+public class Main extends Application implements Observer {
+    private Stage primaryStage;
+    private SceneController sc;
+    public static final String dbFile = "test.db";
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Password Manager");
-        GridPane root = new GridPane();
-        Label passwordLabel = new Label("Password");
-        passwordLabel.setPadding(new Insets(0, 10, 0, 10));
-        passwordLabel.setAlignment(Pos.CENTER);
+        this.primaryStage = primaryStage;
+        DBManager db = new DBManager(dbFile);
+        sc = new SceneController(db);
+        List<Password> passwords = db.getPasswords();
+        if (!passwords.isEmpty()) {
+            sc.setCurrentScene(new PromptScene(sc));
+        }
+        this.primaryStage.setTitle("Password Manager");
+        sc.addObserver(this);
+        this.primaryStage.setScene(sc.getCurrentScene());
+        this.primaryStage.show();
+    }
 
-        JFXPasswordField passwordField = new JFXPasswordField();
-        passwordField.setAlignment(Pos.CENTER);
-
-        root.add(passwordLabel, 0, 0);
-        root.add(passwordField, 1, 0);
-        primaryStage.setScene(new Scene(root, 800, 800));
-        primaryStage.show();
+    @Override
+    public void update(Observable o, Object arg) {
+        ViewScene scene = (ViewScene)arg;
+        this.primaryStage.setScene(scene.getScene());
     }
 
     public static void main(String[] args) {
