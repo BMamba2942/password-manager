@@ -22,6 +22,7 @@ public class PromptScene extends ViewScene {
         Label confirmLabel = new Label("Confirm Password");
         JFXPasswordField confirmField = new JFXPasswordField();
         JFXButton butt = new JFXButton("Enter");
+        butt.disableProperty().bind(passwordField.textProperty().isNotEmpty().and(passwordField.textProperty().isNotEqualTo(confirmField.textProperty())));
         butt.setOnAction((event) -> this.controller.nextScene());
         root.getChildren().addAll(butt, passLabel, passwordField, confirmLabel, confirmField);
         return new Scene(root, 800, 800);

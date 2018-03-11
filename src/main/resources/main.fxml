@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+
+<JFXTabPane fx:id="tabsPane" maxHeight="800.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="800.0" prefHeight="402.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <tabs>
+      <Tab fx:id="passwordTab" text="Passwords">
+        <content>
+          <AnchorPane>
+               <children>
+                  <JFXListView fx:id="list" prefWidth="110.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Settings">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <JFXListView layoutY="-2.0" prefHeight="369.0" prefWidth="125.0" />
+               </children></AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</JFXTabPane>
